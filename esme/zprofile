@@ -1,0 +1,3 @@
+# ssh-agent should be running in macOS
+# it only needs to run the very first time you generate (or import)
+# ssh-key
