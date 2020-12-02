@@ -18,8 +18,13 @@ fpath=(${ASDF_DIR}/completions $fpath)
 # nodejs plugin needs to run this once
 # $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
 
+if (( ! ${fpath[(I)/usr/local/share/zsh/site-functions]} )); then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 autoload -Uz compinit
 compinit
 
 # if compinit doesn't work, sudo chmod -R 755 /usr/local/share/zsh
+
 alias repojump='cd $(ghq list | fzf)'
