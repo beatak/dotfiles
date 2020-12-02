@@ -1,0 +1,25 @@
+# How I choose where to put a setting
+
+# if it…
+# .zshenv:   is needed by a command run non-interactively
+# .zshenv:   should be updated on each new shell
+# .zprofile: runs a command which may take some time to complete
+# .zshrc:    is related to interactive usage
+# .zlogin:   is a command to be run when the shell is fully setup
+# .zlogout:  releases a resource acquired at login
+
+export ZSH_DISABLE_COMPFIX=true
+export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/curl/lib -L/usr/local/opt/readline/lib"
+export CPPFLAGS="-I/usr/local/opt/libffi/include -I/usr/local/opt/curl/include -I/usr/local/opt/readline/include"
+export GHQ_ROOT="$HOME/Repository"
+
+. $(brew --prefix asdf)/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
+# nodejs plugin needs to run this once
+# $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
+
+autoload -Uz compinit
+compinit
+
+# if compinit doesn't work, sudo chmod -R 755 /usr/local/share/zsh
+alias repojump='cd $(ghq list | fzf)'
