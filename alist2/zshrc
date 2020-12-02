@@ -27,4 +27,4 @@ compinit
 
 # if compinit doesn't work, sudo chmod -R 755 /usr/local/share/zsh
 
-alias repojump='cd $(ghq list | fzf)'
+alias repojump='cd $(ghq root)/$(ghq list | fzf)'
