@@ -2,6 +2,6 @@
 	email = beatak@gmail.com
 	name = Takashi M
 [core]
-	excludesfile = $HOME/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [pull]
 	ff = only
