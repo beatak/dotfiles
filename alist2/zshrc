@@ -8,7 +8,11 @@
 # .zlogin:   is a command to be run when the shell is fully setup
 # .zlogout:  releases a resource acquired at login
 
+# Load secrets
+. $HOME/.secret_envs
+
 export ZSH_DISABLE_COMPFIX=true
+
 export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/curl/lib -L/usr/local/opt/readline/lib"
 export CPPFLAGS="-I/usr/local/opt/libffi/include -I/usr/local/opt/curl/include -I/usr/local/opt/readline/include"
 export GHQ_ROOT="$HOME/Repository"
@@ -22,9 +26,31 @@ if (( ! ${fpath[(I)/usr/local/share/zsh/site-functions]} )); then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
+. $HOME/.gcloud-rc
+
 autoload -Uz compinit
 compinit
 
 # if compinit doesn't work, sudo chmod -R 755 /usr/local/share/zsh
 
 alias repojump='cd $(ghq root)/$(ghq list | fzf)'
+
+# default is like: export PROMPT='%n@%m %. %% '
+DEFAULT_USER=$USER
+DEFAULT_HOST=`hostname`
+set_shorter_prompt () {
+  if [[ $USERNAME == $DEFAULT_USER ]]; then
+    MY_USER="Me"
+  else
+    MY_USER=$USERNAME
+  fi
+  if [[ $HOST == $DEFAULT_HOST ]]; then
+    MY_HOST="localhost"
+  else
+    MY_HOST=$HOST
+  fi
+  PROMPT="$MY_USER@$MY_HOST %. %% "
+}
+
+typeset -a precmd_functions
+precmd_functions+=(set_shorter_prompt)
