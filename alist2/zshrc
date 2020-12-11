@@ -9,7 +9,7 @@
 # .zlogout:  releases a resource acquired at login
 
 # Load secrets
-. $HOME/.secret_envs
+source $HOME/.secret_envs
 
 export ZSH_DISABLE_COMPFIX=true
 
@@ -26,7 +26,7 @@ if (( ! ${fpath[(I)/usr/local/share/zsh/site-functions]} )); then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-. $HOME/.gcloud-rc
+source $HOME/.gcloud-rc
 
 autoload -Uz compinit
 compinit
