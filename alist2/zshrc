@@ -17,7 +17,7 @@ export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/curl/lib -L/usr/loc
 export CPPFLAGS="-I/usr/local/opt/libffi/include -I/usr/local/opt/curl/include -I/usr/local/opt/readline/include"
 export GHQ_ROOT="$HOME/Repository"
 
-. $(brew --prefix asdf)/asdf.sh
+source $(brew --prefix asdf)/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 # nodejs plugin needs to run this once
 # $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
