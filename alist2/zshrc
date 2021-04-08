@@ -54,3 +54,8 @@ set_shorter_prompt () {
 
 typeset -a precmd_functions
 precmd_functions+=(set_shorter_prompt)
+
+alias tilt_dev=/usr/local/bin/tilt
+
+autoload -Uz _kongal
+_kongal
