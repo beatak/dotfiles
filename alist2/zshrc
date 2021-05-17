@@ -16,6 +16,7 @@ export ZSH_DISABLE_COMPFIX=true
 export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/curl/lib -L/usr/local/opt/readline/lib"
 export CPPFLAGS="-I/usr/local/opt/libffi/include -I/usr/local/opt/curl/include -I/usr/local/opt/readline/include"
 export GHQ_ROOT="$HOME/Repository"
+export PATH="/usr/local/sbin:$PATH"
 
 source $(brew --prefix asdf)/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
